@@ -13,11 +13,12 @@ read_conf() {
 IP_PING=$(read_conf "MAIN" "ip_verification" "$CONFIG")
 PATH_CONECTED=$(read_conf "MAIN" "path_conected" "$CONFIG")
 
-echo "Verifica coneccion VPN"
+echo "Iniciando proceso."
+echo "Verificando conexión..."
 IP_RESPONSE=$(ping -q -c 1 $IP_PING)
 RESPONSE_CONECTED="received, 100%"
 if [[ "$IP_RESPONSE" == *"$RESPONSE_CONECTED"* ]]; then
-    echo "No conectado ejecutando script."
+    echo "No conectado. Ejecutando conexión."
     sh "$PATH_CONECTED/conected.sh"
 else 
     echo "Conectado. Nada que hacer"
