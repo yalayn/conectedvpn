@@ -1,7 +1,7 @@
 #!/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-CONFIG="/home/yordin/Projects/conectedvpn/config.ini"
+CONFIG="/home/yordinalayn/Projects/conectedvpn/config.ini"
 
 read_conf() {
     local SECTION="$1"

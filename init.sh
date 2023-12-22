@@ -1,7 +1,7 @@
 #!/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-CONFIG="/home/yordin/Projects/conectedvpn/config.ini"
+CONFIG="/home/yordinalayn/Projects/conectedvpn/config.ini"
 
 read_conf() {
     local SECTION="$1"
@@ -15,13 +15,19 @@ PATH_CONECTED=$(read_conf "MAIN" "path_conected" "$CONFIG")
 
 echo "Iniciando proceso."
 echo "Verificando conexión..."
-IP_RESPONSE=$(ping -q -c 1 $IP_PING)
-RESPONSE_CONECTED="received, 100%"
-if [[ "$IP_RESPONSE" == *"$RESPONSE_CONECTED"* ]]; then
+ping -c 4 $IP_PING > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+    echo "Conectado. Nada que hacer"
+else
     echo "No conectado. Ejecutando conexión."
     sh "$PATH_CONECTED/conected.sh"
-else 
-    echo "Conectado. Nada que hacer"
 fi
 
-
+# IP_RESPONSE=$(ping -q -c 1 $IP_PING)
+# RESPONSE_CONECTED="received, 100%"
+# if [[ "$IP_RESPONSE" == *"$RESPONSE_CONECTED"* ]]; then
+#     echo "No conectado. Ejecutando conexión."
+#     sh "$PATH_CONECTED/conected.sh"
+# else
+#     echo "Conectado. Nada que hacer"
+# fi
